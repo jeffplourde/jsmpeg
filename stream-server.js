@@ -59,7 +59,9 @@ var streamServer = require('http').createServer( function(request, response) {
     );	
     createSocketIO(width, height, identifier);
     request.on('data', function(data){
-		socketServer[identifier].emit('mpeg', data);
+    	for(var key in socketServer[identifier].connected) {
+			socketServer[identifier].connected[key].volatile.emit('mpeg', data);
+		}
     });
 }).listen(STREAM_PORT);
 console.log('Listening for MPEG Stream on http://127.0.0.1:'+STREAM_PORT+'/<width>/<height>/<identifier>');
