@@ -30,6 +30,7 @@
 			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
 		</p>
 	</canvas>
+	<script type="text/javascript" src="socket.io.js"></script>
 	<script type="text/javascript" src="jsmpg.js"></script>
 	<script type="text/javascript">
 		// Show loading notice
@@ -39,7 +40,9 @@
 		ctx.fillText('Loading...', canvas.width/2-30, canvas.height/3);
 
 		// Setup the WebSocket connection and start the player
-		var client = new WebSocket( 'ws://example.com:8084/' );
+		var client = new io( 'http://localhost:8084/jeff' );
+		// var client = new WebSocket("ws://openice.info/mpeg/ivy");
+		//client.on('mpeg', function(data) { console.log(data); });
 		var player = new jsmpeg(client, {canvas:canvas});
 	</script>
 </body>
